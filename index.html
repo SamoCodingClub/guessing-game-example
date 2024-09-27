@@ -1,0 +1,63 @@
+<!--
+Example implementation of the common "guessing game" beginner programming project (using HTML and JavaScript).
+Hosted at https://samocodingclub.github.io/guessing-game-example; file name is index.html to allow hosting at this particular URL
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Guessing Game</title>
+  <script>
+    function print(...nodes) {
+      const paragraph = document.createElement("p");
+      paragraph.append(...nodes);
+      document.body.appendChild(paragraph);
+    }
+    const input = (...nodes) => new Promise(resolve => {
+      const inputField = document.createElement("input");
+      inputField.type = "number";
+      inputField.min = "1";
+      inputField.max = "1000";
+      inputField.step = "1";
+      inputField.required = "required";
+      const submit = document.createElement("input");
+      submit.type = "submit";
+      submit.value = "Submit";
+      const form = document.createElement("form");
+      form.style.display = "inline-block";
+      form.append(inputField, submit);
+      const paragraph = document.createElement("p");
+      paragraph.append(...nodes, form);
+      document.body.appendChild(paragraph);
+      form.onsubmit = ev => {
+        ev.preventDefault();
+        inputField.disabled = "disabled";
+        submit.remove();
+        resolve(inputField.value);
+      };
+    });
+    onload = async () => {
+      const randomNumber = Math.floor(Math.random() * 1000 + 1);
+      print("I\u2019m thinking of a random number between 1 and 1,000 inclusive.");
+      print("You will guess my number, and for every incorrect guess, I will tell you whether my number is higher or lower than your guess.");
+      print("How many tries will it take you to guess my number?");
+      let guessesCount = 0;
+      while (true) {
+        guessesCount++;
+        const guess = await input(`Guess #${guessesCount}: `);
+        if (randomNumber > guess) print(`My number is higher than ${guess}.`);
+        else if (randomNumber < guess) print(`My number is lower than ${guess}.`);
+        else break;
+      }
+      print(`My number is ${randomNumber}!`);
+      print("If you were playing optimally, you should have made at most 10 guesses.");
+      if (guessesCount <= 10) print(`You took ${guessesCount} guesses, so you were playing at an optimal level! Good job!`);
+      else print(`You took ${guessesCount} guesses. Can you figure out the optimal strategy? If you think you know it, refresh the page to play again!`);
+    };
+  </script>
+</head>
+<body>
+  <noscript style="font-style: italic;">Please enable JavaScript to play.</noscript>
+</body>
+</html>
