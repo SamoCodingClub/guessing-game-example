@@ -12,6 +12,8 @@ Your objective is to create a program that plays the higher-or-lower guessing ga
 2. The program prompts the user to input a guess for which of the possible numbers the program chose, prompting the user to guess again if the input is invalid.
 3. If the user's guess was incorrect, the program outputs whether the number was greater or less than the user's guess and prompts the user to guess again. Otherwise, the program outputs that the guess was correct.
 
-<div style="text-align: center; font-size: 2.5em; color: red;"><span style="font-weight: bold; font-variant-caps: small-caps;">To be continued...</span> Please check back later</div>
+These objectives should be simple to execute since there is no question to exactly how they should be implemented, as the logic the program should execute is exactly the same as these objectives. (For a more complex program, you would need to reason about exactly how to implement the objectives using logic.) They should also be easy to implement as, other than the random generation of the number to be guessed, the program only needs to perform the extremely basic operations of remembering and comparing whole numbers.
 
-In the meantime, you can check out the [example implementation](https://samocodingclub.github.io/guessing-game-example).
+**To be continued... Please check back later**
+
+In the meantime, you can check out the [example implementation](https://samocodingclub.github.io/guessing-game-example). Note that user input validation is done using HTML forms, so you will need to validate the input yourself in your implementation.
